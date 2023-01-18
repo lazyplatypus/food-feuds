@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"
