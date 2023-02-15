@@ -2,12 +2,11 @@ import type { NextRequest } from 'next/server'
 
 import { NextResponse } from 'next/server'
 
-// Block Austria, prefer Germany
-const BLOCKED_COUNTRY = 'AT'
+let blocked: string[] = ['AT', 'JP', 'KR', 'GB']; 
 
 // Limit middleware pathname config
 export const config = {
-  matcher: '/',
+  matcher: '/answers',
 }
 
 export function middleware(req: NextRequest) {
@@ -15,7 +14,7 @@ export function middleware(req: NextRequest) {
   const country = req.geo.country || 'US'
 
   // Specify the correct pathname
-  if (country === BLOCKED_COUNTRY) {
+  if (blocked.includes(country)) {
     req.nextUrl.pathname = '/blocked'
   } else {
     req.nextUrl.pathname = `/${country}`
