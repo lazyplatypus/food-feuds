@@ -1,40 +1,32 @@
-import { useRouter } from 'next/router'
-import { Box, Img, SimpleGrid, Stack, Text, useColorModeValue as mode } from '@chakra-ui/react'
+import { useRouter } from 'next/router';
+import { BigLink } from '../components/big-link';
+import { Contenders } from '../components/contenders';
+import { Header } from '../components/header';
 
-const AllowedPage: React.FC = () => {
+export default function AllowedPage() {
   const {
     query: { country },
-  } = useRouter()
+  } = useRouter();
 
-  return ( 
-     <div>
-    <Box bg={mode('gray.50', 'gray.800')} as="section" py={{ base: '12', md: '24' }}>
-    <h1>It is clear you do not appreciate burgers</h1>
-    <Box maxW={{ base: 'xl', md: '7xl' }} mx="auto" px={{ base: '6', md: '8' }}>
-      <Stack
-        direction={{ base: 'column', md: 'row' }}
-        spacing={{ base: '12', xl: '20' }}
-        align="center"
-      >
-        <Box maxW="450px" flex="1" m={15} h={{ base: '240px', md: '400px' }} flexShrink={0} >
-          <Img
-            htmlWidth="450px"
-            htmlHeight="500px"
-            w="full"
-            h="full"
-            objectFit="cover"
-            src="data:image/jpeg;base64,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"
-          />
-            <h1>sousvide burger</h1>
-            <p>Cooking burgers sous vide allows for unparalleled control over cooking temperature and, therefore, level of juiciness.</p>
-        </Box>
-      </Stack>
-    </Box>
-  </Box>
-     </div>
-     )
-  
-  
+  return (
+    <>
+      <Header
+        headline="Burger Fail"
+        lede={`Clearly you don’t appreciate burgers.`}
+      />
+
+      <Contenders
+        contenders={[
+          {
+            name: 'Sous Vide Burgers',
+            description: 'Sous vide means perfectly cooked burgers every time.',
+            src: 'https://res.cloudinary.com/jlengstorf/image/upload/f_auto,q_auto,w_500,h_500,c_fill,g_faces/v1676500100/food-feud/sous-vide.jpg',
+            alt: 'a sous vide burger',
+          },
+        ]}
+      />
+
+      <BigLink href="/">Back to home</BigLink>
+    </>
+  );
 }
-
-export default AllowedPage

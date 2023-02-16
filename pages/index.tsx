@@ -1,49 +1,34 @@
-import { Button, Box, Img, Stack, useColorModeValue as mode, Center } from '@chakra-ui/react'
-import Link from 'next/link'
+import { BigLink } from '../components/big-link';
+import { Contenders } from '../components/contenders';
+import { Header } from '../components/header';
 
-const IndexPage: React.FC = () => {
-  return ( 
-     <div>
-    <Box bg={mode('gray.50', 'gray.800')} as="section" py={{ base: '12', md: '24' }}>
-    <h1>This is Truth to Burgers - the site that tells you what the best way to cook burgers is</h1>
-    <Box maxW={{ base: 'xl', md: '7xl' }} mx="auto" px={{ base: '6', md: '8' }}>
-      <Stack
-        direction={{ base: 'column', md: 'row' }}
-        spacing={{ base: '12', xl: '20' }}
-        align="center"
-      >
-        <Box maxW="450px" flex="1" m={15} h={{ base: '240px', md: '400px' }} flexShrink={0} >
-          <Img
-            htmlWidth="450px"
-            htmlHeight="500px"
-            w="full"
-            h="full"
-            objectFit="cover"
-            src="https://cdn.vox-cdn.com/thumbor/rwRvPN3YeTXcX9nUltnfviij38k=/0x0:2048x1363/1200x0/filters:focal(0x0:2048x1363):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/19343851/classic_smash_double.jpg"
-          />
-            <h1>SmashBurgers</h1>
-            <p>The smashburger is the original burger. It’s simple, classic, and built for flavor.</p>
-        </Box>
-        <Box maxW="450px" flex="1" m={15} h={{ base: '240px', md: '400px' }} flexShrink={0}>
-        <Img
-            htmlWidth="450px"
-            htmlHeight="500px"
-            w="full"
-            h="full"
-            objectFit="cover"
-            src="https://www.seriouseats.com/thmb/EAcPG2oxKQ-jLlp8UIa6clPRZWQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__07__20150702-sous-vide-hamburger-anova-primary-bf5eefff4505446f9cbf33f5f2d9b2e6.jpg"
-          />
-          <h1>Sous Vide Burgers</h1>
-          <p>Cooking burgers sous vide allows for unparalleled control over cooking temperature and, therefore, level of juiciness.</p>
-        </Box>
-      </Stack>
-        <Center>     <Link href="/answers"><Button>Find out the real winner</Button></Link></Center>
-    </Box>
-  </Box>
-     </div>
-     )
-  
-  
+export default function IndexPage() {
+  return (
+    <>
+      <Header
+        headline="Burger Brawl"
+        lede="Which of these burgers is ballin’, and which is dead meat?"
+      />
+
+      <Contenders
+        contenders={[
+          {
+            name: 'Smashburgers',
+            description:
+              'The smashburger is simple, classic, and packed with flavor.',
+            src: 'https://res.cloudinary.com/jlengstorf/image/upload/w_500,h_500,g_faces,c_fill/v1676500102/food-feud/smash.jpg',
+            alt: 'a smashburger',
+          },
+          {
+            name: 'Sous Vide Burgers',
+            description: 'Sous vide means perfectly cooked burgers every time.',
+            src: 'https://res.cloudinary.com/jlengstorf/image/upload/f_auto,q_auto,w_500,h_500,c_fill,g_faces/v1676500100/food-feud/sous-vide.jpg',
+            alt: 'a sous vide burger',
+          },
+        ]}
+      />
+
+      <BigLink href="/answers">Find out the real winner</BigLink>
+    </>
+  );
 }
-
-export default IndexPage

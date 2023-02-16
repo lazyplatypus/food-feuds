@@ -1,0 +1,44 @@
+.contenders {
+  align-items: start;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+}
+
+.contender {
+  background: hsl(178 100% 76% / 1);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.5rem 0.125rem hsl(178 100% 16% / 0.25);
+  padding: 1rem;
+  position: relative;
+}
+
+.contender::after {
+  background: hsl(178 100% 16% / 1);
+  border-radius: 0.5rem;
+  content: '';
+  display: block;
+  inset: 0;
+  position: absolute;
+  transform: rotate(0.75deg);
+  z-index: -1;
+}
+
+.contender:nth-child(even)::after {
+  transform: rotate(-1.25deg);
+}
+
+.contenderImage {
+  object-fit: cover;
+  height: auto;
+  width: 100%;
+}
+
+.contender h2 {
+  margin: 1rem 0 0;
+}
+
+.contender p {
+  margin: 0;
+}
