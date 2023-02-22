@@ -1,4 +1,3 @@
-import { BigLink } from '../components/big-link';
 import { Contenders } from '../components/contenders';
 import { Header } from '../components/header';
 
@@ -27,8 +26,6 @@ export default function IndexPage() {
           },
         ]}
       />
-
-      <BigLink href="/answers">Find out the real winner</BigLink>
     </>
   );
 }
