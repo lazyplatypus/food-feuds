@@ -28,7 +28,7 @@ export default function IndexPage() {
         ]}
       />
 
-      <BigLink href="/answers">Find out the real winner</BigLink>
+      <BigLink href="/answer">Discover the Truth</BigLink>
     </>
   );
 }

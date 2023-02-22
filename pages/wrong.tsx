@@ -1,18 +1,12 @@
-import { useRouter } from 'next/router';
-import { BigLink } from '../components/big-link';
 import { Contenders } from '../components/contenders';
 import { Header } from '../components/header';
 
-export default function AllowedPage() {
-  const {
-    query: { country },
-  } = useRouter();
-
+export default function IndexPage() {
   return (
     <>
       <Header
-        headline="Burger Fail"
-        lede={`Clearly you don’t appreciate burgers.`}
+        headline="The Best Burger? Sous vide!"
+        lede="You do you, I guess."
       />
 
       <Contenders
@@ -25,8 +19,6 @@ export default function AllowedPage() {
           },
         ]}
       />
-
-      <BigLink href="/">Back to home</BigLink>
     </>
   );
 }

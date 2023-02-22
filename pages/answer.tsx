@@ -1,19 +1,10 @@
-import { useRouter } from 'next/router';
-import { BigLink } from '../components/big-link';
 import { Contenders } from '../components/contenders';
 import { Header } from '../components/header';
 
-const AllowedPage: React.FC = () => {
-  const {
-    query: { country },
-  } = useRouter();
-
+export default function IndexPage() {
   return (
     <>
-      <Header
-        headline="Smashing!"
-        lede={`In the ${country}, smashburgers reign supreme.`}
-      />
+      <Header headline="The Best Burger? Smash Burger!" lede="Obvs." />
 
       <Contenders
         contenders={[
@@ -26,10 +17,6 @@ const AllowedPage: React.FC = () => {
           },
         ]}
       />
-
-      <BigLink href="/">Back to home</BigLink>
     </>
   );
-};
-
-export default AllowedPage;
+}

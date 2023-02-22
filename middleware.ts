@@ -1,25 +1,31 @@
-import type { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
-import { NextResponse } from 'next/server'
-
-let blocked: string[] = ['AT', 'JP', 'KR', 'GB']; 
-
-// Limit middleware pathname config
 export const config = {
-  matcher: '/answers',
-}
+  matcher: ['/', '/answer'],
+};
 
 export function middleware(req: NextRequest) {
-  // Extract country
-  const country = req.geo.country || 'US'
-
-  // Specify the correct pathname
-  if (blocked.includes(country)) {
-    req.nextUrl.pathname = '/blocked'
-  } else {
-    req.nextUrl.pathname = `/${country}`
+  console.log(req.geo.city);
+  if (req.nextUrl.pathname === '/answer') {
+    if (req.geo.country === 'FR') {
+      return NextResponse.rewrite(new URL('/wrong', req.url));
+    } else if (req.geo.city === 'Portland') {
+      return NextResponse.rewrite(new URL('/answer-chi', req.url));
+    } else if (req.geo.city === 'San Francisco') {
+      return NextResponse.rewrite(new URL('/answer-ny', req.url));
+    } else {
+      return NextResponse.rewrite(new URL('/answer', req.url));
+    }
   }
 
-  // Rewrite to URL
-  return NextResponse.rewrite(req.nextUrl)
+  if (req.nextUrl.pathname === '/') {
+    if (req.geo.city === 'Portland' || req.geo.city === 'San Francisco') {
+      return NextResponse.rewrite(new URL('/pizza', req.url));
+    } else {
+      return NextResponse.rewrite(new URL('/', req.url));
+    }
+  }
+
+  return NextResponse.rewrite(req.nextUrl);
 }
